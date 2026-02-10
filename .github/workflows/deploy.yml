@@ -1,4 +1,4 @@
-name: Deploy Nuxt to FTP
+name: Build & Deploy Nuxt (FTP)
 
 on:
   push:
@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Repo'yu çek
+      - name: Repo checkout
         uses: actions/checkout@v4
 
       - name: Node.js kur
@@ -21,17 +21,21 @@ jobs:
       - name: Bağımlılıkları kur
         run: npm install
 
-      - name: Nuxt build (static)
+      - name: Nuxt build
         run: npx nuxt build
 
-      - name: FTP Deploy (FTPS)
+      - name: FTP Deploy
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
+
+          # Eğer panelde “Explicit FTPS” yazıyorsa:
           protocol: ftps
           port: 21
+
           local-dir: .output/public/
-          server-dir: ${{ secrets.FTP_PATH }}/
+          server-dir: /public_html/
+
           dangerous-clean-slate: true
