@@ -7,8 +7,12 @@
     </div>
     <div class="about-me">
       <p>
-        Hi, I'm Burak Temur, a passionate developer and student. I specialize in web development and enjoy creating innovative solutions. Welcome to my portfolio!
-      </p>
+Burak Temur
+Benim adım Burak Temur, 17 yaşındayım ve meslek lisesinde 12. sınıf öğrencisiyim. Şuanda yazılım üstüne lise stajımı TREX Dijital Manufacturing' de yapmaktayım. Amacım yazılımda ve eğitim öğretim hayatımda kendimi geliştirmek.
+</p>
+<p>
+Eğer ortak ilgi alanlarımız varsa, iş görüşmesi yapmak istiyorsanız veya sadece sohbet etmek istiyorsanız benimle iletişime geçebilirsiniz.      
+</p>
     </div>
   </div>
 </template>
