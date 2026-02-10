@@ -1,7 +1,8 @@
 {
-  "name": "Nuxt-Project",
+  "name": "nuxt-project",
   "type": "module",
   "private": true,
+  "packageManager": "pnpm@10.29.2",
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
