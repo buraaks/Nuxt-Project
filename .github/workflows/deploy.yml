@@ -17,25 +17,23 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: "npm"
 
       - name: Bağımlılıkları kur
-        run: npm install
+        run: npm ci
 
-      - name: Nuxt build
-        run: npx nuxt build
+      - name: Nuxt static generate
+        run: npx nuxi generate
 
       - name: FTP Deploy
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
-          # ÖNEMLİ: Eğer 530 hatası alıyorsanız, username secret'ını
-          # tam formatta (jef2c9mtr@jeft.com.tr) girmeyi deneyin.
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftps
           port: 21
           local-dir: .output/public/
-          server-dir: /public_html/
-          # Hata ayıklamayı kolaylaştırmak için log seviyesini artırıyoruz
-          log-level: verbose
-          dangerous-clean-slate: true
+          server-dir: ${{ secrets.FTP_PATH }}
+          log-level: minimal
+          dangerous-clean-slate: false
