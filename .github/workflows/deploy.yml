@@ -28,14 +28,14 @@ jobs:
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
+          # ÖNEMLİ: Eğer 530 hatası alıyorsanız, username secret'ını
+          # tam formatta (jef2c9mtr@jeft.com.tr) girmeyi deneyin.
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-
-          # Eğer panelde “Explicit FTPS” yazıyorsa:
           protocol: ftps
           port: 21
-
           local-dir: .output/public/
           server-dir: /public_html/
-
+          # Hata ayıklamayı kolaylaştırmak için log seviyesini artırıyoruz
+          log-level: verbose
           dangerous-clean-slate: true
