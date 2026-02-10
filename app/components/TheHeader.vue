@@ -4,7 +4,7 @@
       <div class="logo">BT</div>
       <ul class="nav-links">
         <li><NuxtLink to="/" class="nav-link">Anasayfa</NuxtLink></li>
-        <li><NuxtLink to="/about" class="nav-link">Hakkımda</NuxtLink></li>
+        <li><NuxtLink to="/projects" class="nav-link">Projeler</NuxtLink></li>
       </ul>
     </nav>
   </header>
