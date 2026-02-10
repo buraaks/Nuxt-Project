@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h1>Hakkımızda</h1>
-    <p>Bu sayfa, projemiz hakkında bilgi vermek için oluşturulmuştur.</p>
+    <h1>Projeler</h1>
+    <p>Bu sayfa, geliştirdiğim projeleri göstermek için oluşturulmuştur.</p>
   </div>
 </template>
 
