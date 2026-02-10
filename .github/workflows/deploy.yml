@@ -1,4 +1,4 @@
-name: Deploy Nuxt 4 to TurkTicaret
+name: Deploy Nuxt to FTP
 
 on:
   push:
@@ -6,30 +6,32 @@ on:
       - main
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Kodu çek
+      - name: Repo'yu çek
         uses: actions/checkout@v4
 
-      - name: Node kur
+      - name: Node.js kur
         uses: actions/setup-node@v4
         with:
           node-version: 20
 
-      - name: Paketleri yükle
+      - name: Bağımlılıkları kur
         run: npm install
 
-      - name: Nuxt generate
-        run: npm run generate
+      - name: Nuxt build (static)
+        run: npx nuxt build
 
-      - name: FTP deploy
+      - name: FTP Deploy (FTPS)
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          port: 21
           local-dir: .output/public/
           server-dir: ${{ secrets.FTP_PATH }}/
           dangerous-clean-slate: true
