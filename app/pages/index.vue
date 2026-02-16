@@ -1,27 +1,30 @@
 <template>
   <div class="home">
-    <div class="home__bg">
-      <div class="home__glow home__glow--1" aria-hidden="true" />
-      <div class="home__glow home__glow--2" aria-hidden="true" />
-      <div class="home__grid" aria-hidden="true" />
+    <!-- Background -->
+    <div class="bg" aria-hidden="true">
+      <div class="bg__glow bg__glow--top" />
+      <div class="bg__glow bg__glow--bottom" />
+      <div class="bg__grid" />
     </div>
 
-    <header class="home__hero">
-      <p class="home__label">Merhaba, ben</p>
-      <h1 class="home__title">Burak Temur</h1>
-      <p class="home__subtitle">Developer & Student</p>
-    </header>
+    <!-- Hero -->
+    <section class="hero">
+      <h1 class="hero__name">Burak <span class="hero__name--accent">Temur</span></h1>
+      <p class="hero__role">Developer &amp; Student</p>
+    </section>
 
-    <section class="home__about">
-      <div class="home__about-inner">
-        <p class="home__about-lead">
-          Benim adım Burak Temur, 17 yaşındayım ve meslek lisesinde 12. sınıf öğrencisiyim.
-          Şu an yazılım alanında lise stajımı TREX Dijital Manufacturing'de yapmaktayım.
-          Amacım yazılımda ve eğitim hayatımda kendimi geliştirmek.
+    <!-- About -->
+    <section class="about">
+      <h2 class="section-title">Hakkımda</h2>
+      <div class="about__card">
+        <p>
+          17 yasindayim ve meslek lisesinde 12. sinif ogrencisiyim.
+          Su an yazilim alaninda lise stajimi
+          <strong>TREX Dijital Manufacturing</strong>'de yapmaktayim.
         </p>
-        <p class="home__about-text">
-          Ortak ilgi alanlarımız varsa, iş görüşmesi yapmak veya sohbet etmek isterseniz
-          benimle iletişime geçebilirsiniz.
+        <p>
+          Amacim yazilimda ve egitim hayatimda kendimi surekli gelistirmek.
+          Yeni teknolojiler ogrenmek ve projeler uretmek benim icin hem tutkum hem de hedefim.
         </p>
       </div>
     </section>
@@ -32,162 +35,239 @@
 useHead({
   title: 'Burak Temur | Developer & Student',
   meta: [
-    { name: 'description', content: 'Portfolio of Burak Temur, a Developer and Student' }
+    { name: 'description', content: 'Burak Temur - Developer & Student Portfolio' }
   ]
 })
+
 </script>
 
 <style scoped>
 .home {
-  --home-accent: #e84a4a;
-  --home-accent-soft: rgba(232, 74, 74, 0.15);
-  --home-accent-border: rgba(232, 74, 74, 0.35);
-  --home-text: rgba(255, 255, 255, 0.92);
-  --home-text-muted: rgba(255, 255, 255, 0.55);
-  --home-bg: #0d0d0f;
-  --home-card-bg: rgba(255, 255, 255, 0.03);
+  --accent: #ff3e3e;
+  --accent-soft: rgba(255, 62, 62, 0.12);
+  --accent-border: rgba(255, 62, 62, 0.25);
+  --text: rgba(255, 255, 255, 0.92);
+  --text-muted: rgba(255, 255, 255, 0.5);
+  --card-bg: rgba(255, 255, 255, 0.03);
+  --card-border: rgba(255, 255, 255, 0.06);
 
-  min-height: 100vh;
   position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: clamp(2rem, 6vw, 4rem) 1.5rem clamp(4rem, 10vw, 6rem);
   overflow: hidden;
 }
 
-/* ---- Background ---- */
-.home__bg {
-  position: absolute;
+/* ===== Background ===== */
+.bg {
+  position: fixed;
   inset: 0;
   z-index: 0;
-  background:
-    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(232, 74, 74, 0.12), transparent),
-    radial-gradient(ellipse 60% 40% at 100% 50%, rgba(232, 74, 74, 0.06), transparent),
-    radial-gradient(ellipse 50% 30% at 0% 80%, rgba(120, 80, 200, 0.06), transparent),
-    var(--home-bg);
+  pointer-events: none;
 }
 
-.home__glow {
+.bg__glow {
   position: absolute;
   border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.5;
-  animation: home-glow 12s ease-in-out infinite alternate;
+  filter: blur(100px);
 }
 
-.home__glow--1 {
-  width: min(90vw, 480px);
-  height: min(90vw, 480px);
-  top: -15%;
+.bg__glow--top {
+  width: 600px;
+  height: 600px;
+  top: -200px;
   left: 50%;
   transform: translateX(-50%);
-  background: radial-gradient(circle, var(--home-accent-soft) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(255, 62, 62, 0.15), transparent 70%);
+  animation: float 14s ease-in-out infinite alternate;
 }
 
-.home__glow--2 {
-  width: min(60vw, 320px);
-  height: min(60vw, 320px);
-  bottom: 10%;
-  right: -5%;
-  background: radial-gradient(circle, rgba(120, 80, 200, 0.2) 0%, transparent 70%);
-  animation-delay: -4s;
+.bg__glow--bottom {
+  width: 400px;
+  height: 400px;
+  bottom: -100px;
+  right: -50px;
+  background: radial-gradient(circle, rgba(120, 80, 200, 0.12), transparent 70%);
+  animation: float 10s ease-in-out infinite alternate-reverse;
 }
 
-.home__grid {
+.bg__grid {
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-  background-size: 60px 60px;
-  mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black, transparent 85%);
-  -webkit-mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black, transparent 85%);
+    linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 60% 50% at 50% 30%, black, transparent);
+  -webkit-mask-image: radial-gradient(ellipse 60% 50% at 50% 30%, black, transparent);
 }
 
-@keyframes home-glow {
-  from { opacity: 0.35; transform: translateX(-50%) scale(1); }
-  to { opacity: 0.6; transform: translateX(-50%) scale(1.15); }
+@keyframes float {
+  from { opacity: 0.4; transform: translateX(-50%) scale(1); }
+  to   { opacity: 0.7; transform: translateX(-50%) scale(1.2); }
 }
 
-.home__glow--2 {
-  animation: home-glow-2 10s ease-in-out infinite alternate;
-  animation-delay: -4s;
-}
-
-@keyframes home-glow-2 {
-  from { opacity: 0.3; }
-  to { opacity: 0.5; }
-}
-
-/* ---- Hero ---- */
-.home__hero {
+/* ===== Hero ===== */
+.hero {
   position: relative;
   z-index: 1;
   text-align: center;
-  margin-bottom: clamp(2.5rem, 8vw, 4rem);
+  padding: clamp(4rem, 12vw, 8rem) 1.5rem clamp(3rem, 8vw, 5rem);
+  max-width: 720px;
+  margin: 0 auto;
 }
 
-.home__label {
-  font-size: clamp(0.8rem, 2vw, 0.95rem);
-  font-weight: 500;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: var(--home-text-muted);
-  margin: 0 0 0.75rem;
-}
-
-.home__title {
-  font-size: clamp(2.5rem, 11vw, 5rem);
+.hero__name {
+  font-size: clamp(3rem, 12vw, 5.5rem);
   font-weight: 800;
-  line-height: 1.05;
-  letter-spacing: -0.02em;
-  margin: 0;
+  line-height: 1;
+  letter-spacing: -0.03em;
   color: #fff;
-  text-shadow: 0 0 40px var(--home-accent-soft);
+  margin: 0;
+  animation: fadeUp 0.6s 0.1s ease both;
 }
 
-.home__subtitle {
-  font-size: clamp(0.95rem, 2.5vw, 1.25rem);
+.hero__name--accent {
+  background: linear-gradient(135deg, var(--accent), #ff7b7b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero__role {
+  font-size: clamp(0.9rem, 2.5vw, 1.15rem);
   font-weight: 500;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--home-accent);
-  margin: 1rem 0 0;
-  padding: 0.5rem 1.25rem;
-  border: 1px solid var(--home-accent-border);
+  color: var(--accent);
+  margin: 1.25rem 0 0;
+  padding: 0.45rem 1.2rem;
+  border: 1px solid var(--accent-border);
   border-radius: 999px;
   display: inline-block;
-  background: var(--home-accent-soft);
+  background: var(--accent-soft);
+  animation: fadeUp 0.6s 0.2s ease both;
 }
 
-/* ---- About ---- */
-.home__about {
+.hero__actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+  animation: fadeUp 0.6s 0.4s ease both;
+}
+
+/* ===== Buttons ===== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1.5rem;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+.btn--primary {
+  background: var(--accent);
+  color: #fff;
+  border: 1px solid var(--accent);
+}
+
+.btn--primary:hover {
+  background: #e63535;
+  box-shadow: 0 0 24px rgba(255, 62, 62, 0.3);
+  transform: translateY(-1px);
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.btn--ghost:hover {
+  border-color: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.04);
+  transform: translateY(-1px);
+}
+
+.btn__icon {
+  width: 18px;
+  height: 18px;
+}
+
+/* ===== Section Title ===== */
+.section-title {
+  text-align: center;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 2rem;
+  letter-spacing: 1px;
+}
+
+.section-title::after {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 3px;
+  background: var(--accent);
+  border-radius: 2px;
+  margin: 0.75rem auto 0;
+}
+
+/* ===== About ===== */
+.about {
   position: relative;
   z-index: 1;
-  width: 100%;
-  max-width: 560px;
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 0 1.5rem 4rem;
 }
 
-.home__about-inner {
-  background: var(--home-card-bg);
-  border: 1px solid var(--home-accent-border);
+.about__card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
   border-radius: 16px;
   padding: clamp(1.5rem, 4vw, 2.25rem);
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.02), 0 24px 48px -12px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
-.home__about-lead {
-  font-size: clamp(0.95rem, 2.2vw, 1.1rem);
-  line-height: 1.7;
-  color: var(--home-text);
-  margin: 0 0 1rem;
-}
-
-.home__about-text {
-  font-size: clamp(0.9rem, 2vw, 1rem);
-  line-height: 1.65;
-  color: var(--home-text-muted);
+.about__card p {
+  font-size: clamp(0.93rem, 2vw, 1.05rem);
+  line-height: 1.75;
+  color: var(--text-muted);
   margin: 0;
+}
+
+.about__card p + p {
+  margin-top: 1rem;
+}
+
+.about__card strong {
+  color: var(--text);
+}
+
+/* ===== Animation ===== */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== Mobile ===== */
+@media (max-width: 480px) {
+  .hero__actions {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 </style>
