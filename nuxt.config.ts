@@ -21,14 +21,14 @@ export default defineNuxtConfig({
       ],
       meta: [
         { name: 'theme-color', content: '#1a1a1a' },
-        { name: 'description', content: 'Burak Temur - Yazilim gelistirici ve ogrenci. Nuxt, Vue.js, C# ve .NET ile projeler gelistiriyorum.' },
+        { name: 'description', content: 'Burak Temur - Yazılım geliştirici ve öğrenci.' },
         { property: 'og:title', content: 'Burak Temur ' },
-        { property: 'og:description', content: 'Yazilim gelistirici ve ogrenci. Nuxt, Vue.js, C# ve .NET ile projeler gelistiriyorum.' },
+        { property: 'og:description', content: 'Yazılım geliştirici ve öğrenci.' },
         { property: 'og:type', content: 'website' },
         { property: 'og:locale', content: 'tr_TR' },
         { name: 'author', content: 'Burak Temur' },
-        { name: 'keywords', content: 'Burak Temur, developer, yazilimci, portfolio, Nuxt, Vue.js, C#, .NET' }
+        { name: 'keywords', content: 'Burak Temur - Yazılım geliştirici ve öğrenci.'}
       ]
     }
   }
-})
+})  
