@@ -116,16 +116,6 @@
         >
           {{ link.label }}
         </NuxtLink>
-        <div class="mobile__socials">
-          <a href="https://github.com/buraaks" target="_blank" rel="noopener noreferrer" class="mobile__social" @click="closeAll">GitHub</a>
-          <span class="mobile__dot">&middot;</span>
-          <a href="https://www.linkedin.com/in/burak-temur-a39432300/" target="_blank" rel="noopener noreferrer" class="mobile__social" @click="closeAll">LinkedIn</a>
-          <span class="mobile__dot">&middot;</span>
-          <a href="https://www.instagram.com/burak._.tmr8" target="_blank" rel="noopener noreferrer" class="mobile__social" @click="closeAll">Instagram</a>
-        </div>
-        <button class="mobile__email" @click="copyEmail">
-          {{ copied ? 'Kopyalandi!' : 'E-posta kopyala' }}
-        </button>
       </nav>
     </Transition>
   </header>
@@ -391,11 +381,15 @@ onUnmounted(() => {
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 8px;
   cursor: pointer;
-  transition: border-color 0.2s ease;
+  transition: border-color 0.2s ease, transform 0.15s ease;
 }
 
 .burger:hover {
   border-color: rgba(255, 255, 255, 0.2);
+}
+
+.burger:active {
+  transform: scale(0.9);
 }
 
 .burger__line {
@@ -408,25 +402,20 @@ onUnmounted(() => {
   transform-origin: center;
 }
 
-.burger--open .burger__line:nth-child(1) {
-  transform: translateY(7px) rotate(45deg);
-}
-
-.burger--open .burger__line:nth-child(2) {
-  opacity: 0;
-}
-
-.burger--open .burger__line:nth-child(3) {
-  transform: translateY(-7px) rotate(-45deg);
-}
 
 /* Mobile Nav */
 .mobile {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 99;
   display: flex;
   flex-direction: column;
   padding: 0.5rem 2rem 1.25rem;
   border-top: 1px solid rgba(255, 255, 255, 0.05);
-  background: rgba(26, 26, 26, 0.95);
+  background: rgb(26, 26, 26);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
 }
 
 .mobile__link {
@@ -451,48 +440,6 @@ onUnmounted(() => {
   color: #ff3e3e;
 }
 
-.mobile__socials {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin-top: 0.5rem;
-  padding-top: 1rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
-}
-
-.mobile__social {
-  color: rgba(255, 255, 255, 0.45);
-  text-decoration: none;
-  font-size: 0.85rem;
-  font-weight: 500;
-  transition: color 0.2s ease;
-}
-
-.mobile__social:hover {
-  color: #ff3e3e;
-}
-
-.mobile__dot {
-  color: rgba(255, 255, 255, 0.15);
-  font-size: 0.75rem;
-}
-
-.mobile__email {
-  margin-top: 0.75rem;
-  padding: 0.55rem 0;
-  background: none;
-  border: none;
-  color: rgba(255, 255, 255, 0.35);
-  font-size: 0.82rem;
-  font-weight: 500;
-  cursor: pointer;
-  text-align: left;
-  transition: color 0.2s ease;
-}
-
-.mobile__email:hover {
-  color: #ff3e3e;
-}
 
 /* Transitions */
 .slide-enter-active,
