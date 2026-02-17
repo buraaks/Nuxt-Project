@@ -2,7 +2,7 @@
   <div class="projects-page">
     <section class="projects-intro">
       <h1>Projeler</h1>
-      <p>GitHub depolarım.</p>
+      <p>GitHub Projelerim.</p>
     </section>
 
     <div v-if="pending" class="loading">
@@ -204,7 +204,7 @@ function langColor(language) {
 .project-card:hover {
   border-color: rgba(255, 62, 62, 0.4);
   box-shadow: 0 0 24px rgba(255, 62, 62, 0.1);
-  transform: translateY(-2px);
+
 }
 
 .project-header {

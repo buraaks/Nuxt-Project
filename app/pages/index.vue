@@ -15,16 +15,16 @@
 
     <!-- About -->
     <section class="about">
-      <h2 class="section-title">Hakkımda</h2>
+      <h2 class="about__title">Hakkımda</h2>
       <div class="about__card">
         <p>
-          17 yasindayim ve meslek lisesinde 12. sinif ogrencisiyim.
-          Su an yazilim alaninda lise stajimi
-          <strong>TREX Dijital Manufacturing</strong>'de yapmaktayim.
+          17 yasinda, meslek lisesi son sinif ogrencisiyim. Yazilim alaninda
+          <strong>TREX Dijital Manufacturing</strong> bunyesinde stajimi surduruyorum.
         </p>
         <p>
-          Amacim yazilimda ve egitim hayatimda kendimi surekli gelistirmek.
-          Yeni teknolojiler ogrenmek ve projeler uretmek benim icin hem tutkum hem de hedefim.
+          Hem yazilimda hem de egitim hayatimda surekli kendimi gelistirmeyi hedefliyorum.
+          Yeni teknolojileri kesfetmek, projeler uretmek ve ogrendiklerimi uygulamaya dokmek
+          benim icin bir tutku.
         </p>
       </div>
     </section>
@@ -146,99 +146,48 @@ useHead({
   animation: fadeUp 0.6s 0.2s ease both;
 }
 
-.hero__actions {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  margin-top: 2rem;
-  flex-wrap: wrap;
-  animation: fadeUp 0.6s 0.4s ease both;
-}
-
-/* ===== Buttons ===== */
-.btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.7rem 1.5rem;
-  border-radius: 10px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  text-decoration: none;
-  transition: all 0.25s ease;
-  cursor: pointer;
-}
-
-.btn--primary {
-  background: var(--accent);
-  color: #fff;
-  border: 1px solid var(--accent);
-}
-
-.btn--primary:hover {
-  background: #e63535;
-  box-shadow: 0 0 24px rgba(255, 62, 62, 0.3);
-  transform: translateY(-1px);
-}
-
-.btn--ghost {
-  background: transparent;
-  color: var(--text);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-}
-
-.btn--ghost:hover {
-  border-color: rgba(255, 255, 255, 0.3);
-  background: rgba(255, 255, 255, 0.04);
-  transform: translateY(-1px);
-}
-
-.btn__icon {
-  width: 18px;
-  height: 18px;
-}
-
-/* ===== Section Title ===== */
-.section-title {
-  text-align: center;
-  font-size: clamp(1.5rem, 4vw, 2rem);
-  font-weight: 700;
-  color: #fff;
-  margin: 0 0 2rem;
-  letter-spacing: 1px;
-}
-
-.section-title::after {
-  content: '';
-  display: block;
-  width: 40px;
-  height: 3px;
-  background: var(--accent);
-  border-radius: 2px;
-  margin: 0.75rem auto 0;
-}
-
 /* ===== About ===== */
 .about {
   position: relative;
   z-index: 1;
-  max-width: 640px;
+  max-width: 600px;
   margin: 0 auto;
-  padding: 0 1.5rem 4rem;
+  padding: 3rem 1.5rem 5rem;
+}
+
+.about__title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0 0 1.25rem;
 }
 
 .about__card {
-  background: var(--card-bg);
+  position: relative;
+  border-left: 2px solid var(--accent);
+  padding: 1.5rem 1.75rem;
+  background: linear-gradient(135deg, rgba(255, 62, 62, 0.03), transparent 60%);
+  border-radius: 0 14px 14px 0;
+}
+
+.about__card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   border: 1px solid var(--card-border);
-  border-radius: 16px;
-  padding: clamp(1.5rem, 4vw, 2.25rem);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  border-left: none;
+  border-radius: 0 14px 14px 0;
+  pointer-events: none;
 }
 
 .about__card p {
-  font-size: clamp(0.93rem, 2vw, 1.05rem);
-  line-height: 1.75;
+  font-size: clamp(0.93rem, 2vw, 1.02rem);
+  line-height: 1.8;
   color: var(--text-muted);
   margin: 0;
 }
@@ -249,6 +198,7 @@ useHead({
 
 .about__card strong {
   color: var(--text);
+  font-weight: 600;
 }
 
 /* ===== Animation ===== */
@@ -263,11 +213,4 @@ useHead({
   }
 }
 
-/* ===== Mobile ===== */
-@media (max-width: 480px) {
-  .hero__actions {
-    flex-direction: column;
-    align-items: center;
-  }
-}
 </style>
