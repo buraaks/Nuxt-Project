@@ -255,7 +255,6 @@ onUnmounted(() => {
 
 .nav__link.router-link-exact-active {
   color: #ff3e3e;
-  background: rgba(255, 62, 62, 0.1);
 }
 
 /* Right actions */
