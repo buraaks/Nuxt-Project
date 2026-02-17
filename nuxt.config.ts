@@ -12,7 +12,7 @@ export default defineNuxtConfig({
 
   app: {
     head: {
-      title: 'Nuxt Projesi',
+      title: 'Burak Temur',
       htmlAttrs: {
         lang: 'tr'
       },
@@ -21,7 +21,13 @@ export default defineNuxtConfig({
       ],
       meta: [
         { name: 'theme-color', content: '#1a1a1a' },
-        { name: 'description', content: 'Burak Temur - Developer & Student Portfolio' }
+        { name: 'description', content: 'Burak Temur - Yazilim gelistirici ve ogrenci. Nuxt, Vue.js, C# ve .NET ile projeler gelistiriyorum.' },
+        { property: 'og:title', content: 'Burak Temur ' },
+        { property: 'og:description', content: 'Yazilim gelistirici ve ogrenci. Nuxt, Vue.js, C# ve .NET ile projeler gelistiriyorum.' },
+        { property: 'og:type', content: 'website' },
+        { property: 'og:locale', content: 'tr_TR' },
+        { name: 'author', content: 'Burak Temur' },
+        { name: 'keywords', content: 'Burak Temur, developer, yazilimci, portfolio, Nuxt, Vue.js, C#, .NET' }
       ]
     }
   }
