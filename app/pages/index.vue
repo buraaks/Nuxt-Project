@@ -18,13 +18,13 @@
       <h2 class="about__title">Hakkımda</h2>
       <div class="about__card">
         <p>
-          17 yasinda, meslek lisesi son sinif ogrencisiyim. Yazilim alaninda
-          <strong class="trex"><a href="https://trex.com.tr">TREX Dijital Manufacturing</a></strong> bunyesinde stajimi surduruyorum.
+          Merhaba, ben Burak Temur , 17 yaşında , meslek lisesi son sınıf öğrencisi olarak stajımı
+          <strong class="trex"><a href="https://trex.com.tr">TREX Dijital Manufacturing</a></strong> bunyesinde sürdüyorum.
         </p>
         <p>
           Hem yazilimda hem de egitim hayatimda surekli kendimi gelistirmeyi hedefliyorum.
-          Yeni teknolojileri kesfetmek, projeler uretmek ve ogrendiklerimi uygulamaya dokmek
-          benim icin bir tutku.
+          Yeni teknolojileri kesfetmek, projeler üretmek ve ögrendiklerimi uygulamaya dökmek
+          için çabalıyorum.
         </p>
       </div>
     </section>
