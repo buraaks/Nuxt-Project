@@ -19,7 +19,7 @@
       <div class="about__card">
         <p>
           17 yasinda, meslek lisesi son sinif ogrencisiyim. Yazilim alaninda
-          <strong>TREX Dijital Manufacturing</strong> bunyesinde stajimi surduruyorum.
+          <strong class="trex"><a href="https://trex.com.tr">TREX Dijital Manufacturing</a></strong> bunyesinde stajimi surduruyorum.
         </p>
         <p>
           Hem yazilimda hem de egitim hayatimda surekli kendimi gelistirmeyi hedefliyorum.
@@ -199,6 +199,11 @@ useHead({
 .about__card strong {
   color: var(--text);
   font-weight: 600;
+}
+.trex a {
+  color: var(--text);
+  text-decoration: none;
+  transition: color 0.3s, border-color 0.3s;
 }
 
 /* ===== Animation ===== */
