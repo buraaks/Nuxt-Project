@@ -21,7 +21,7 @@ export default defineNuxtConfig({
       ],
       meta: [
         { name: 'theme-color', content: '#1a1a1a' },
-        { name: 'description', content: 'Nuxt 4 ile geliştirilmiş statik web projesi' }
+        { name: 'description', content: 'Burak Temur - Developer & Student Portfolio' }
       ]
     }
   }
