@@ -1,31 +1,32 @@
 <template>
-  <div class="home">
+  <div class="relative overflow-hidden">
     <!-- Background -->
-    <div class="bg" aria-hidden="true">
-      <div class="bg__glow bg__glow--top" />
-      <div class="bg__glow bg__glow--bottom" />
-      <div class="bg__grid" />
+    <div class="fixed inset-0 z-0 pointer-events-none" aria-hidden="true">
+      <div class="glow-top" />
+      <div class="glow-bottom" />
+      <div class="grid-bg" />
     </div>
 
     <!-- Hero -->
-    <section class="hero">
-      <h1 class="hero__name">Burak <span class="hero__name--accent">Temur</span></h1>
-      <p class="hero__role">Developer &amp; Student</p>
+    <section class="relative z-[1] text-center mx-auto max-w-3xl px-6 pt-[clamp(4rem,12vw,8rem)] pb-[clamp(3rem,8vw,5rem)]">
+      <h1 class="text-[clamp(3rem,12vw,5.5rem)] font-extrabold leading-none tracking-tight text-white animate-fade-up">
+        Burak <span class="bg-gradient-to-br from-primary-500 to-primary-300 bg-clip-text text-transparent">Temur</span>
+      </h1>
+      <UBadge
+        variant="subtle"
+        color="primary"
+        size="lg"
+        class="mt-5 uppercase tracking-[0.2em] font-medium rounded-full animate-fade-up-delay"
+      >
+        Developer &amp; Student
+      </UBadge>
     </section>
 
     <!-- About -->
-    <section class="about">
-      <h2 class="about__title">Hakkımda</h2>
-      <div class="about__card">
-        <p>
-          Merhaba, ben Burak Temur , 17 yaşında , meslek lisesi son sınıf öğrencisi olarak stajımı
-          <strong class="trex"><a href="https://trex.com.tr">TREX Dijital Manufacturing</a></strong> bunyesinde sürdüyorum.
-        </p>
-        <p>
-          Hem yazilimda hem de egitim hayatimda surekli kendimi gelistirmeyi hedefliyorum.
-          Yeni teknolojileri kesfetmek, projeler üretmek ve ögrendiklerimi uygulamaya dökmek
-          için çabalıyorum.
-        </p>
+    <section class="relative z-[1] max-w-xl mx-auto px-6 pt-12 pb-20">
+      <h2 class="text-[0.95rem] font-semibold tracking-[0.3em] uppercase text-white/85 mb-5">Hakkımda</h2>
+      <div class="about-card relative border-l-2 border-primary-500 py-6 px-7 bg-gradient-to-br from-primary-500/[0.03] to-transparent rounded-r-[14px]">
+        <ContentRenderer v-if="about" :value="about" class="about-content" />
       </div>
     </section>
   </div>
@@ -39,56 +40,39 @@ useHead({
   ]
 })
 
+const { data: about } = await useAsyncData('about', () =>
+  queryCollection('content').path('/about').first()
+)
 </script>
 
 <style scoped>
-.home {
-  --accent: #ff3e3e;
-  --accent-soft: rgba(255, 62, 62, 0.12);
-  --accent-border: rgba(255, 62, 62, 0.25);
-  --text: rgba(255, 255, 255, 0.92);
-  --text-muted: rgba(255, 255, 255, 0.5);
-  --card-bg: rgba(255, 255, 255, 0.03);
-  --card-border: rgba(255, 255, 255, 0.06);
-
-  position: relative;
-  overflow: hidden;
-}
-
-/* ===== Background ===== */
-.bg {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-}
-
-.bg__glow {
+/* Background glow effects */
+.glow-top {
   position: absolute;
-  border-radius: 50%;
-  filter: blur(100px);
-}
-
-.bg__glow--top {
   width: 600px;
   height: 600px;
   top: -200px;
   left: 50%;
   transform: translateX(-50%);
+  border-radius: 50%;
   background: radial-gradient(circle, rgba(255, 62, 62, 0.15), transparent 70%);
+  filter: blur(100px);
   animation: float 14s ease-in-out infinite alternate;
 }
 
-.bg__glow--bottom {
+.glow-bottom {
+  position: absolute;
   width: 400px;
   height: 400px;
   bottom: -100px;
   right: -50px;
+  border-radius: 50%;
   background: radial-gradient(circle, rgba(120, 80, 200, 0.12), transparent 70%);
+  filter: blur(100px);
   animation: float 10s ease-in-out infinite alternate-reverse;
 }
 
-.bg__grid {
+.grid-bg {
   position: absolute;
   inset: 0;
   background-image:
@@ -104,109 +88,38 @@ useHead({
   to   { opacity: 0.7; transform: translateX(-50%) scale(1.2); }
 }
 
-/* ===== Hero ===== */
-.hero {
-  position: relative;
-  z-index: 1;
-  text-align: center;
-  padding: clamp(4rem, 12vw, 8rem) 1.5rem clamp(3rem, 8vw, 5rem);
-  max-width: 720px;
-  margin: 0 auto;
-}
-
-.hero__name {
-  font-size: clamp(3rem, 12vw, 5.5rem);
-  font-weight: 800;
-  line-height: 1;
-  letter-spacing: -0.03em;
-  color: #fff;
+/* About content (from Markdown) */
+.about-content :deep(p) {
+  font-size: clamp(0.93rem, 2vw, 1.02rem);
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.5);
   margin: 0;
-  animation: fadeUp 0.6s 0.1s ease both;
 }
 
-.hero__name--accent {
-  background: linear-gradient(135deg, var(--accent), #ff7b7b);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+.about-content :deep(p + p) {
+  margin-top: 1rem;
 }
 
-.hero__role {
-  font-size: clamp(0.9rem, 2.5vw, 1.15rem);
-  font-weight: 500;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin: 1.25rem 0 0;
-  padding: 0.45rem 1.2rem;
-  border: 1px solid var(--accent-border);
-  border-radius: 999px;
-  display: inline-block;
-  background: var(--accent-soft);
-  animation: fadeUp 0.6s 0.2s ease both;
-}
-
-/* ===== About ===== */
-.about {
-  position: relative;
-  z-index: 1;
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 3rem 1.5rem 5rem;
-}
-
-.about__title {
-  font-size: 0.95rem;
-  font-weight: 600;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.85);
-  margin: 0 0 1.25rem;
-}
-
-.about__card {
-  position: relative;
-  border-left: 2px solid var(--accent);
-  padding: 1.5rem 1.75rem;
-  background: linear-gradient(135deg, rgba(255, 62, 62, 0.03), transparent 60%);
-  border-radius: 0 14px 14px 0;
-}
-
-.about__card::before {
+/* About card border overlay */
+.about-card::before {
   content: '';
   position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  border: 1px solid var(--card-border);
+  inset: 0;
+  border: 1px solid rgba(255, 255, 255, 0.06);
   border-left: none;
   border-radius: 0 14px 14px 0;
   pointer-events: none;
 }
 
-.about__card p {
-  font-size: clamp(0.93rem, 2vw, 1.02rem);
-  line-height: 1.8;
-  color: var(--text-muted);
-  margin: 0;
+/* Animations */
+.animate-fade-up {
+  animation: fadeUp 0.6s 0.1s ease both;
 }
 
-.about__card p + p {
-  margin-top: 1rem;
+.animate-fade-up-delay {
+  animation: fadeUp 0.6s 0.2s ease both;
 }
 
-.about__card strong {
-  color: var(--text);
-  font-weight: 600;
-}
-.trex a {
-  color: var(--text);
-  text-decoration: none;
-  transition: color 0.3s, border-color 0.3s;
-}
-
-/* ===== Animation ===== */
 @keyframes fadeUp {
   from {
     opacity: 0;
@@ -217,5 +130,4 @@ useHead({
     transform: translateY(0);
   }
 }
-
 </style>

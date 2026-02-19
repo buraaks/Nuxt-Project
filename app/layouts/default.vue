@@ -1,20 +1,8 @@
 <template>
-  <div class="layout-wrapper">
+  <div class="flex flex-col min-h-screen">
     <TheHeader />
-    <main>
+    <main class="flex-1">
       <slot />
     </main>
   </div>
 </template>
-
-<style>
-.layout-wrapper {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-main {
-  flex: 1;
-}
-</style>

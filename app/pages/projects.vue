@@ -1,58 +1,74 @@
 <template>
-  <div class="projects-page">
-    <section class="projects-intro">
-      <h1>Projeler</h1>
-      <p>GitHub Projelerim.</p>
+  <div class="max-w-[900px] mx-auto px-6 py-8 pb-16">
+    <section class="text-center mb-12">
+      <h1 class="text-white text-[clamp(2rem,5vw,3rem)] font-bold tracking-wider mb-2">Projeler</h1>
+      <p class="text-white/60 text-lg">GitHub Projelerim.</p>
     </section>
 
-    <div v-if="pending" class="loading">
-      <span class="spinner"></span>
-      <p>Depolar yükleniyor...</p>
+    <!-- Loading -->
+    <div v-if="pending" class="flex flex-col gap-6 py-8">
+      <USkeleton v-for="i in 3" :key="i" class="h-40 w-full rounded-xl" />
     </div>
 
-    <div v-else-if="error" class="error-state">
-      <p>Depolar yüklenirken bir hata oluştu.</p>
-      <button class="retry-btn" @click="refresh()">Tekrar Dene</button>
+    <!-- Error -->
+    <div v-else-if="error" class="text-center py-16">
+      <p class="text-white/60 mb-4">Depolar yüklenirken bir hata oluştu.</p>
+      <UButton variant="soft" color="primary" icon="i-lucide-refresh-cw" @click="refresh()">
+        Tekrar Dene
+      </UButton>
     </div>
 
-    <section v-else class="projects-grid">
+    <!-- Projects -->
+    <section v-else class="flex flex-col gap-6">
       <article
         v-for="repo in repos"
         :key="repo.id"
-        class="project-card"
+        class="flex flex-col bg-white/[0.03] border border-primary-500/20 rounded-xl px-7 py-6 transition-all duration-200 hover:border-primary-500/40 hover:shadow-[0_0_24px_rgba(255,62,62,0.1)]"
       >
-        <div class="project-header">
-          <h2 class="project-title">{{ repo.name }}</h2>
-          <span v-if="repo.stargazers_count > 0" class="stars">
+        <div class="flex items-center justify-between mb-2">
+          <h2 class="text-white text-xl font-semibold">{{ repo.name }}</h2>
+          <span v-if="repo.stargazers_count > 0" class="text-yellow-300 text-sm whitespace-nowrap">
             &#9733; {{ repo.stargazers_count }}
           </span>
         </div>
-        <p class="project-desc">{{ repo.description || 'Açıklama bulunmuyor.' }}</p>
-        <div class="project-meta">
-          <span v-if="repo.language" class="tag language-tag">
-            <span class="lang-dot" :style="{ background: langColor(repo.language) }"></span>
+
+        <p class="text-white/75 text-[0.95rem] leading-relaxed mb-4 flex-1">
+          {{ repo.description || 'Açıklama bulunmuyor.' }}
+        </p>
+
+        <div class="flex flex-wrap gap-2 mb-3">
+          <UBadge v-if="repo.language" variant="subtle" color="neutral" class="gap-1.5">
+            <span class="inline-block size-2 rounded-full" :style="{ background: langColor(repo.language) }" />
             {{ repo.language }}
-          </span>
-          <span v-for="topic in repo.topics" :key="topic" class="tag">{{ topic }}</span>
+          </UBadge>
+          <UBadge v-for="topic in repo.topics" :key="topic" variant="subtle" color="primary">
+            {{ topic }}
+          </UBadge>
         </div>
-        <div class="project-links">
-          <a
-            :href="repo.html_url"
+
+        <div class="flex gap-3 pt-1">
+          <UButton
+            :to="repo.html_url"
             target="_blank"
-            rel="noopener noreferrer"
-            class="project-link"
+            variant="link"
+            color="primary"
+            size="sm"
+            trailing-icon="i-lucide-arrow-up-right"
           >
-            GitHub →
-          </a>
-          <a
+            GitHub
+          </UButton>
+          <UButton
             v-if="repo.homepage"
-            :href="repo.homepage"
+            :to="repo.homepage"
             target="_blank"
-            rel="noopener noreferrer"
-            class="project-link demo-link"
+            variant="link"
+            color="neutral"
+            size="sm"
+            trailing-icon="i-lucide-arrow-up-right"
+            class="text-emerald-400 hover:text-emerald-300"
           >
-            Demo →
-          </a>
+            Demo
+          </UButton>
         </div>
       </article>
     </section>
@@ -102,189 +118,3 @@ function langColor(language) {
   return langColors[language] || '#ff3e3e'
 }
 </script>
-
-<style scoped>
-.projects-page {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 2rem 1.5rem 4rem;
-}
-
-.projects-intro {
-  text-align: center;
-  margin-bottom: 3rem;
-}
-
-.projects-intro h1 {
-  color: #fff;
-  font-size: clamp(2rem, 5vw, 3rem);
-  font-weight: 700;
-  margin: 0 0 0.5rem;
-  letter-spacing: 2px;
-}
-
-.projects-intro p {
-  color: rgba(255, 255, 255, 0.6);
-  font-size: 1.1rem;
-  margin: 0;
-}
-
-/* Loading */
-.loading {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-  padding: 4rem 0;
-}
-
-.loading p {
-  color: rgba(255, 255, 255, 0.5);
-  font-size: 0.95rem;
-}
-
-.spinner {
-  width: 36px;
-  height: 36px;
-  border: 3px solid rgba(255, 62, 62, 0.15);
-  border-top-color: #ff3e3e;
-  border-radius: 50%;
-  animation: spin 0.8s linear infinite;
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
-
-/* Error */
-.error-state {
-  text-align: center;
-  padding: 4rem 0;
-}
-
-.error-state p {
-  color: rgba(255, 255, 255, 0.6);
-  margin-bottom: 1rem;
-}
-
-.retry-btn {
-  background: rgba(255, 62, 62, 0.15);
-  color: #ff3e3e;
-  border: 1px solid rgba(255, 62, 62, 0.3);
-  padding: 0.5rem 1.25rem;
-  border-radius: 8px;
-  font-size: 0.9rem;
-  cursor: pointer;
-  transition: background 0.2s ease, border-color 0.2s ease;
-}
-
-.retry-btn:hover {
-  background: rgba(255, 62, 62, 0.25);
-  border-color: rgba(255, 62, 62, 0.5);
-}
-
-/* Grid */
-.projects-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-/* Card */
-.project-card {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 62, 62, 0.2);
-  border-radius: 12px;
-  padding: 1.5rem 1.75rem;
-  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
-  display: flex;
-  flex-direction: column;
-}
-
-.project-card:hover {
-  border-color: rgba(255, 62, 62, 0.4);
-  box-shadow: 0 0 24px rgba(255, 62, 62, 0.1);
-
-}
-
-.project-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 0.5rem;
-}
-
-.project-title {
-  color: #fff;
-  font-size: 1.25rem;
-  font-weight: 600;
-  margin: 0;
-}
-
-.stars {
-  color: #f1e05a;
-  font-size: 0.85rem;
-  white-space: nowrap;
-}
-
-.project-desc {
-  color: rgba(255, 255, 255, 0.75);
-  font-size: 0.95rem;
-  line-height: 1.5;
-  margin: 0 0 1rem;
-  flex: 1;
-}
-
-.project-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: 0.75rem;
-}
-
-.tag {
-  font-size: 0.75rem;
-  color: #ff3e3e;
-  background: rgba(255, 62, 62, 0.12);
-  padding: 0.25rem 0.6rem;
-  border-radius: 6px;
-  letter-spacing: 0.5px;
-}
-
-.language-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  color: rgba(255, 255, 255, 0.8);
-  background: rgba(255, 255, 255, 0.06);
-}
-
-.lang-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  display: inline-block;
-}
-
-.project-links {
-  display: flex;
-  gap: 1rem;
-}
-
-.project-link {
-  font-size: 0.9rem;
-  color: #ff3e3e;
-  text-decoration: none;
-  font-weight: 500;
-  transition: opacity 0.2s ease;
-}
-
-.project-link:hover {
-  opacity: 0.85;
-  text-decoration: underline;
-}
-
-.demo-link {
-  color: #41b883;
-}
-</style>
