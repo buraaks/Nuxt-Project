@@ -83,16 +83,7 @@ useHead({
   ]
 })
 
-const { data: repos, pending, error, refresh } = await useFetch(
-  'https://api.github.com/users/buraaks/repos',
-  {
-    transform: (data) => {
-      return data
-        .filter((repo) => !repo.fork)
-        .sort((a, b) => new Date(b.pushed_at) - new Date(a.pushed_at))
-    }
-  }
-)
+const { data: repos, pending, error, refresh } = await useFetch('/api/repos')
 
 const langColors = {
   'Vue': '#41b883',
