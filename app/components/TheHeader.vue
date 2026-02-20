@@ -20,7 +20,7 @@
           v-for="link in links"
           :key="link.to"
           :to="link.to"
-          class="text-white/55 no-underline text-sm font-medium tracking-wide px-4 py-2 rounded-lg transition-all duration-200 hover:text-white/90 hover:bg-white/[0.04] [&.router-link-exact-active]:text-primary-500"
+          class="text-white/55 no-underline text-sm font-medium tracking-wide px-4 py-2 rounded-lg transition-all duration-200 hover:text-white/90 hover:bg-white/[0.04] active:scale-95 [&.router-link-exact-active]:text-primary-500"
         >
           {{ link.label }}
         </NuxtLink>
@@ -84,7 +84,7 @@
           v-for="link in links"
           :key="link.to"
           :to="link.to"
-          class="flex items-center gap-1.5 text-white/60 no-underline text-base font-medium py-3 border-b border-white/[0.04] last:border-0 transition-colors duration-200 hover:text-primary-500 [&.router-link-exact-active]:text-primary-500"
+          class="flex items-center gap-1.5 text-white/60 no-underline text-base font-medium py-3 border-b border-white/[0.04] last:border-0 transition-all duration-200 hover:text-primary-500 active:scale-[0.97] [&.router-link-exact-active]:text-primary-500"
           @click="closeAll"
         >
           {{ link.label }}
@@ -115,7 +115,6 @@ const links: NavLink[] = [
 const isOpen = ref(false)
 const scrolled = ref(false)
 const copied = ref(false)
-
 const socialLinks: SocialLink[] = [
   { label: 'GitHub', icon: 'i-simple-icons-github', url: 'https://github.com/buraaks', color: '#e6edf3' },
   { label: 'LinkedIn', icon: 'i-simple-icons-linkedin', url: 'https://www.linkedin.com/in/burak-temur-a39432300/', color: '#0a66c2' },
