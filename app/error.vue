@@ -19,12 +19,14 @@
   </div>
 </template>
 
-<script setup>
-const props = defineProps({
-  error: Object
-})
+<script setup lang="ts">
+import type { NuxtError } from '#app'
 
-function handleError() {
+defineProps<{
+  error: NuxtError
+}>()
+
+function handleError(): void {
   clearError({ redirect: '/' })
 }
 </script>

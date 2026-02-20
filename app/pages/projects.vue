@@ -75,7 +75,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 useHead({
   title: 'Projeler | Burak Temur',
   meta: [
@@ -85,7 +85,7 @@ useHead({
 
 const { data: repos, pending, error, refresh } = await useFetch('/api/repos')
 
-const langColors = {
+const langColors: Record<string, string> = {
   'Vue': '#41b883',
   'JavaScript': '#f1e05a',
   'TypeScript': '#3178c6',
@@ -105,7 +105,7 @@ const langColors = {
   'Dart': '#00B4AB'
 }
 
-function langColor(language) {
+function langColor(language: string): string {
   return langColors[language] || '#ff3e3e'
 }
 </script>

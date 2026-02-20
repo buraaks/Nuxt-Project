@@ -94,8 +94,20 @@
   </header>
 </template>
 
-<script setup>
-const links = [
+<script setup lang="ts">
+interface NavLink {
+  to: string
+  label: string
+}
+
+interface SocialLink {
+  label: string
+  icon: string
+  url: string
+  color: string
+}
+
+const links: NavLink[] = [
   { to: '/', label: 'Anasayfa' },
   { to: '/projects', label: 'Projeler' }
 ]
@@ -104,18 +116,18 @@ const isOpen = ref(false)
 const scrolled = ref(false)
 const copied = ref(false)
 
-const socialLinks = [
+const socialLinks: SocialLink[] = [
   { label: 'GitHub', icon: 'i-simple-icons-github', url: 'https://github.com/buraaks', color: '#e6edf3' },
   { label: 'LinkedIn', icon: 'i-simple-icons-linkedin', url: 'https://www.linkedin.com/in/burak-temur-a39432300/', color: '#0a66c2' },
   { label: 'Instagram', icon: 'i-simple-icons-instagram', url: 'https://www.instagram.com/burak._.tmr8', color: '#e4405f' },
   { label: 'Discord', icon: 'i-simple-icons-discord', url: 'https://discord.com/channels/828344938944921630', color: '#5865f2' }
 ]
 
-function closeAll() {
+function closeAll(): void {
   isOpen.value = false
 }
 
-async function copyEmail() {
+async function copyEmail(): Promise<void> {
   try {
     await navigator.clipboard.writeText('buraktemur0816@gmail.com')
     copied.value = true
@@ -127,7 +139,7 @@ async function copyEmail() {
   }
 }
 
-function onScroll() {
+function onScroll(): void {
   scrolled.value = window.scrollY > 20
 }
 
