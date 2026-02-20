@@ -11,7 +11,10 @@ export default defineNuxtConfig({
   // Statik hosting (FTP) için en önemli ikili:
   ssr: false, 
   nitro: {
-    preset: 'static'
+    preset: 'static',
+    prerender: {
+      routes: ['/api/repos']
+    }
   },
 
   app: {
