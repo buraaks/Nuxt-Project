@@ -107,7 +107,8 @@ const copied = ref(false)
 const socialLinks = [
   { label: 'GitHub', icon: 'i-simple-icons-github', url: 'https://github.com/buraaks', color: '#e6edf3' },
   { label: 'LinkedIn', icon: 'i-simple-icons-linkedin', url: 'https://www.linkedin.com/in/burak-temur-a39432300/', color: '#0a66c2' },
-  { label: 'Instagram', icon: 'i-simple-icons-instagram', url: 'https://www.instagram.com/burak._.tmr8', color: '#e4405f' }
+  { label: 'Instagram', icon: 'i-simple-icons-instagram', url: 'https://www.instagram.com/burak._.tmr8', color: '#e4405f' },
+  { label: 'Discord', icon: 'i-simple-icons-discord', url: 'https://discord.com/channels/828344938944921630', color: '#5865f2' }
 ]
 
 function closeAll() {
